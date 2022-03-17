@@ -1,6 +1,7 @@
 package com.example.banksystem.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,24 +12,17 @@ public class MoneyTruck {
     private long TruckID;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<CashPackage> cashPackageList;
+    private List<CashPackage> cashPackageList = new ArrayList<>();
 
-    private Location location;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moneyTruck")
+    private List<Location> locationList = new ArrayList<>();
 
     public MoneyTruck() {
     }
 
-    public MoneyTruck(List<CashPackage> cashPackageList, Location location) {
+    public MoneyTruck(List<CashPackage> cashPackageList, List<Location> locations) {
         this.cashPackageList = cashPackageList;
-        this.location = location;
-    }
-
-    public long getTruckID() {
-        return TruckID;
-    }
-
-    public void setTruckID(long truckID) {
-        TruckID = truckID;
+        this.locationList = locations;
     }
 
     public List<CashPackage> getCashPackageList() {
@@ -39,11 +33,19 @@ public class MoneyTruck {
         this.cashPackageList = cashPackageList;
     }
 
-    public Location getLocation() {
-        return location;
+    public List<Location> getLocations() {
+        return locationList;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocations(List<Location> locations) {
+        this.locationList = locations;
+    }
+
+    public void addPackage(CashPackage cashPackage) {
+        cashPackageList.add(cashPackage);
+    }
+
+    public void addLocation(Location location) {
+        locationList.add(location);
     }
 }

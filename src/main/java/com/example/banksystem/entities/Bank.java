@@ -23,6 +23,10 @@ public class Bank {
         this.cashList = cashList;
     }
 
+    public Bank(String bankName) {
+        this.bankName = bankName;
+    }
+
     public String getBankName() {
         return bankName;
     }
@@ -38,4 +42,5 @@ public class Bank {
     public void setCashList(List<Cash> cashList) {
         this.cashList = cashList;
     }
+
 }

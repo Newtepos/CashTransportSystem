@@ -19,9 +19,9 @@ public class Cash {
     public Cash() {
     }
 
-    public Cash(String currency, BigDecimal amount) {
+    public Cash(String currency, double amount) {
         Currency = currency;
-        Amount = amount;
+        Amount = new BigDecimal(amount);
     }
 
     public String getCurrency() {
