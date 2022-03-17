@@ -37,8 +37,8 @@ public class CBTSController {
         Long truckID = requestPackage.getTruckID();
         String currency = requestPackage.getCurrency();
         double amount = requestPackage.getAmount();
-        cbtsService.createPackage(senderID,receiverID,truckID,currency,amount);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        UUID uuid = cbtsService.createPackage(senderID,receiverID,truckID,currency,amount);
+        return new ResponseEntity<>(uuid, HttpStatus.OK);
     }
 
     @PostMapping("/package/sent")

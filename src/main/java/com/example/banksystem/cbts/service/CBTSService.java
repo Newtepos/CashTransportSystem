@@ -78,7 +78,7 @@ public class CBTSService {
         return bankResponse;
     }
 
-    public void createPackage(Long senderID, Long receiverID, Long truckID, String currency, double amount) {
+    public UUID createPackage(Long senderID, Long receiverID, Long truckID, String currency, double amount) {
         //Validate Data
         Bank sender = validatorService.isBankIDExist(senderID, "Sender");
         Bank receiver = validatorService.isBankIDExist(receiverID, "Receiver");
@@ -88,6 +88,8 @@ public class CBTSService {
         Cash cash = new Cash(currency, amount);
         CashPackage cashPackage = new CashPackage(cash, sender, receiver, truck);
         cashPackageRepository.save(cashPackage);
+
+       return cashPackage.getID();
     }
 
     public void sentCashPackage(UUID packageID) {

@@ -82,4 +82,8 @@ public class CashPackage {
     public void setReceived(Boolean received) {
         this.received = received;
     }
+
+    public UUID getID() {
+        return ID;
+    }
 }
