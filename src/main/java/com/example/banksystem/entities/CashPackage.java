@@ -17,18 +17,21 @@ public class CashPackage {
     private Bank sender;
 
     @ManyToOne
-    private Bank reciver;
+    private Bank receiver;
 
     @ManyToOne
     private MoneyTruck moneyTruck;
 
+    private Boolean sent = false;
+    private Boolean received = false;
+
     public CashPackage() {
     }
 
-    public CashPackage(Cash cash, Bank sender, Bank reciver, MoneyTruck moneyTruck) {
+    public CashPackage(Cash cash, Bank sender, Bank receiver, MoneyTruck moneyTruck) {
         this.cash = cash;
         this.sender = sender;
-        this.reciver = reciver;
+        this.receiver = receiver;
         this.moneyTruck = moneyTruck;
     }
 
@@ -48,12 +51,12 @@ public class CashPackage {
         this.sender = sender;
     }
 
-    public Bank getReciver() {
-        return reciver;
+    public Bank getReceiver() {
+        return receiver;
     }
 
-    public void setReciver(Bank reciver) {
-        this.reciver = reciver;
+    public void setReceiver(Bank receiver) {
+        this.receiver = receiver;
     }
 
     public MoneyTruck getMoneyTruck() {
@@ -62,5 +65,21 @@ public class CashPackage {
 
     public void setMoneyTruck(MoneyTruck moneyTruck) {
         this.moneyTruck = moneyTruck;
+    }
+
+    public Boolean getSent() {
+        return sent;
+    }
+
+    public void setSent(Boolean sent) {
+        this.sent = sent;
+    }
+
+    public Boolean getReceived() {
+        return received;
+    }
+
+    public void setReceived(Boolean received) {
+        this.received = received;
     }
 }
