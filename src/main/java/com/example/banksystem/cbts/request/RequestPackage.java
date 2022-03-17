@@ -1,8 +1,10 @@
 package com.example.banksystem.cbts.request;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class RequestPackage {
+    private UUID id;
     private long senderID;
     private long receiverID;
     private long truckID;
@@ -55,5 +57,13 @@ public class RequestPackage {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CBTSService {
@@ -89,4 +90,9 @@ public class CBTSService {
         cashPackageRepository.save(cashPackage);
     }
 
+    public void sentCashPackage(UUID packageID) {
+        CashPackage cashPackage = validatorService.isCashPackageExist(packageID);
+        cashPackage.setSent(true);
+        cashPackageRepository.save(cashPackage);
+    }
 }

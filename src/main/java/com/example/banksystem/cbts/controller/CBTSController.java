@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class CBTSController {
@@ -40,5 +41,11 @@ public class CBTSController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @PostMapping("/package/sent")
+    public ResponseEntity sentCashPackage(@RequestParam String id) {
+        UUID uuid = UUID.fromString(id);
+        cbtsService.sentCashPackage(uuid);
+        return new ResponseEntity<>("Packaged Sent", HttpStatus.OK);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.banksystem.cbts.controller;
 
+import com.example.banksystem.cbts.exception.CashPackageNotFoundException;
 import com.example.banksystem.cbts.exception.TruckNotFoundException;
 import com.example.banksystem.cbts.response.CBTSResponse;
 import com.example.banksystem.cbts.exception.BankNotFoundException;
@@ -26,5 +27,12 @@ public class CBTSControllerAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public CBTSResponse truckNotFound(TruckNotFoundException e) {
         return new CBTSResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(CashPackageNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public CBTSResponse cashPackageNotFound(CashPackageNotFoundException e) {
+        return  new CBTSResponse(e.getMessage());
     }
 }
