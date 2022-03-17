@@ -10,7 +10,7 @@ public class CashPackage {
     @GeneratedValue
     private UUID ID;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Cash cash;
 
     public CashPackage() {

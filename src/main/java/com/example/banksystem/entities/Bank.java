@@ -1,9 +1,6 @@
 package com.example.banksystem.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,6 +12,7 @@ public class Bank {
 
     private String bankName;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Cash> cashList;
 
     public Bank() {
