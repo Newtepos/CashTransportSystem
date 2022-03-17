@@ -1,6 +1,7 @@
 package com.example.banksystem.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 public class Location {
@@ -12,16 +13,19 @@ public class Location {
     private double latitude;
     private double longitude;
 
+    private Timestamp timestamp;
+
     @ManyToOne
     private MoneyTruck moneyTruck;
 
     public Location() {
     }
 
-    public Location(double latitude, double longitude, MoneyTruck moneyTruck) {
+    public Location(double latitude, double longitude, MoneyTruck moneyTruck, Timestamp timestamp) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.moneyTruck = moneyTruck;
+        this.timestamp = timestamp;
     }
 
     public double getLatitude() {

@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
 
 @SpringBootApplication
 public class BanksystemApplication {
@@ -29,8 +30,8 @@ public class BanksystemApplication {
 		Cash cash = new Cash("USD", 200000.12312312);
 		MoneyTruck moneyTruck = new MoneyTruck();
 		CashPackage cashPackage = new CashPackage(cash,bank1,bank2,moneyTruck);
-		Location location = new Location(12.12,12.12, moneyTruck);
-		Location location2 = new Location(12.12,12.12,moneyTruck);
+		Location location = new Location(12.12,12.12, moneyTruck, new Timestamp(System.currentTimeMillis()));
+		Location location2 = new Location(12.12,12.12, moneyTruck, new Timestamp(System.currentTimeMillis()));
 		moneyTruck.addPackage(cashPackage);
 		moneyTruck.addLocation(location);
 
