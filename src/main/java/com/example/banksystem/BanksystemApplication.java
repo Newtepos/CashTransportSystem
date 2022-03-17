@@ -27,8 +27,8 @@ public class BanksystemApplication {
 
 		bank1.setBankName("KBTG");
 		Cash cash = new Cash("USD", 200000.12312312);
-		CashPackage cashPackage = new CashPackage(cash, bank1, bank2);
 		MoneyTruck moneyTruck = new MoneyTruck();
+		CashPackage cashPackage = new CashPackage(cash,bank1,bank2,moneyTruck);
 		Location location = new Location(12.12,12.12, moneyTruck);
 		Location location2 = new Location(12.12,12.12,moneyTruck);
 		moneyTruck.addPackage(cashPackage);

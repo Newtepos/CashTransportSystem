@@ -11,7 +11,7 @@ public class MoneyTruck {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long TruckID;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moneyTruck")
     private List<CashPackage> cashPackageList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moneyTruck")

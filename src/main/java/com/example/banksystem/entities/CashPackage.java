@@ -19,13 +19,17 @@ public class CashPackage {
     @ManyToOne
     private Bank reciver;
 
+    @ManyToOne
+    private MoneyTruck moneyTruck;
+
     public CashPackage() {
     }
 
-    public CashPackage(Cash cash, Bank sender, Bank reciver) {
+    public CashPackage(Cash cash, Bank sender, Bank reciver, MoneyTruck moneyTruck) {
         this.cash = cash;
         this.sender = sender;
         this.reciver = reciver;
+        this.moneyTruck = moneyTruck;
     }
 
     public Cash getCash() {
@@ -50,5 +54,13 @@ public class CashPackage {
 
     public void setReciver(Bank reciver) {
         this.reciver = reciver;
+    }
+
+    public MoneyTruck getMoneyTruck() {
+        return moneyTruck;
+    }
+
+    public void setMoneyTruck(MoneyTruck moneyTruck) {
+        this.moneyTruck = moneyTruck;
     }
 }
