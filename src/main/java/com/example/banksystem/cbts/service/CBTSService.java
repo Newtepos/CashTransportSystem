@@ -5,8 +5,11 @@ import com.example.banksystem.cbts.response.BankResponse;
 import com.example.banksystem.cbts.response.CashResponse;
 import com.example.banksystem.entities.Bank;
 import com.example.banksystem.entities.Cash;
+import com.example.banksystem.entities.CashPackage;
+import com.example.banksystem.entities.MoneyTruck;
 import com.example.banksystem.repository.BankRepositry;
 import com.example.banksystem.repository.CashPackageRepository;
+import com.example.banksystem.repository.MoneyTruckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,12 @@ public class CBTSService {
 
     @Autowired
     BankRepositry bankRepositry;
+
+    @Autowired
+    MoneyTruckRepository moneyTruckRepository;
+
+    @Autowired
+    ValidatorService validatorService;
 
     public List<BankResponse> getAllBank() {
         List<Bank> bankList = bankRepositry.findAll();
@@ -66,6 +75,18 @@ public class CBTSService {
         bankResponse.setBank(queryResult.get().getBankName());
 
         return bankResponse;
+    }
+
+    public void createPackage(Long senderID, Long receiverID, Long truckID, String currency, double amount) {
+        //Validate Data
+        Bank sender = validatorService.isBankIDExist(senderID, "Sender");
+        Bank receiver = validatorService.isBankIDExist(receiverID, "Receiver");
+        MoneyTruck truck = validatorService.isTruckIDExist(truckID);
+
+        //Create Class and Save
+        Cash cash = new Cash(currency, amount);
+        CashPackage cashPackage = new CashPackage(cash, sender, receiver, truck);
+        cashPackageRepository.save(cashPackage);
     }
 
 }
