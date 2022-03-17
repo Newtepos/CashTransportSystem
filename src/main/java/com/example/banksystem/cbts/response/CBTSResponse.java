@@ -1,15 +1,13 @@
-package com.example.banksystem;
+package com.example.banksystem.cbts.response;
 
-import org.springframework.http.HttpStatus;
-
-public class AppResponse {
+public class CBTSResponse {
 
     private String message;
 
-    public AppResponse() {
+    public CBTSResponse() {
     }
 
-    public AppResponse(String message) {
+    public CBTSResponse(String message) {
         this.message = message;
     }
 
