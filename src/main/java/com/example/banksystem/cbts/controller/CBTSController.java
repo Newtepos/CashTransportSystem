@@ -1,15 +1,12 @@
 package com.example.banksystem.cbts.controller;
 
+import com.example.banksystem.cbts.request.RequestPackage;
 import com.example.banksystem.cbts.response.BankResponse;
 import com.example.banksystem.cbts.service.CBTSService;
-import com.example.banksystem.entities.Bank;
-import com.example.banksystem.repository.BankRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +15,7 @@ public class CBTSController {
 
     @Autowired
     CBTSService cbtsService;
+
 
     @GetMapping("/bank")
     public ResponseEntity getAllBank() {
@@ -30,5 +28,17 @@ public class CBTSController {
         BankResponse response = cbtsService.getBankById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping("/package")
+    public ResponseEntity createPackage(@RequestBody RequestPackage requestPackage) {
+        Long senderID = requestPackage.getSenderID();
+        Long receiverID = requestPackage.getReceiverID();
+        Long truckID = requestPackage.getTruckID();
+        String currency = requestPackage.getCurrency();
+        double amount = requestPackage.getAmount();
+        cbtsService.createPackage(senderID,receiverID,truckID,currency,amount);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 
 }
